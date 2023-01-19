@@ -2,7 +2,7 @@
 
 int ft_open_front(t_map *mapsize)
 {
-    t_temp  temp;//
+    t_temp  temp;
 
     temp.i = -1;
     while (mapsize->map[++temp.i])
