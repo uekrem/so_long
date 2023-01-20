@@ -17,11 +17,6 @@ void    ft_put_score(int point, t_mlx *mlx)
     char    *score;
 
     score = ft_itoa(point);
-    if (point < 0)                  //bakılmalı
-    {
-        free(score);
-        score = ft_itoa(0);
-    }
     mlx_string_put(mlx->start, mlx->win, 20, 20, 0x00FFFFFF, score);
     free(score);
 }

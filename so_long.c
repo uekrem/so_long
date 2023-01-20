@@ -89,6 +89,7 @@ int main(int argc, char **argv)
     {
         mlx.start = mlx_init();
         mlx.win = mlx_new_window(mlx.start,mapsize.width * 64, mapsize.heigth * 64, "so_long");
+        mapsize.point = 0;
         ft_img_addr(&photo, &mlx);
         ft_img_idx(&mapsize, &mlx, &photo);
         mlx.mapsize = &mapsize;

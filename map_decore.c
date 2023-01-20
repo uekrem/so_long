@@ -94,7 +94,7 @@ char    **ft_read_maps(t_map *mapsize, char *map_file)
     char    *first_map;
     int     fd;
 
-    mapsize->total = -1;                                                              
+    mapsize->width = -1;                                                              
     fd = open(map_file, O_RDONLY);
     first_map = get_next_line(fd);
     while  (first_map[++mapsize->width])

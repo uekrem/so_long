@@ -16,8 +16,7 @@ int    ft_close_game(t_mlx *mlx)
     free(mlx->mapsize->map);
     free(mlx->start);
     free(mlx->win);
-
-    system("leaks so_long");
+    //system("leaks so_long");
     exit(0);
 }
 
