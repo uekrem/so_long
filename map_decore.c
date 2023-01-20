@@ -48,12 +48,18 @@ char    **ft_create_maps(char *first_map, t_map *mapsize)
     ft_data_maps(first_map, mapsize);
     if (ft_open_front(mapsize))
     {
-        free(mapsize->visit);
+        while (++i < mapsize->heigth)
+            free(mapsize->visit[i]);
+        free(mapsize->visit[i]);
         return (mapsize->map);
     }
     while (++i < mapsize->heigth)
         free(mapsize->map[i]);
-    free(mapsize->visit);
+    free(mapsize->map[i]);
+    i = -1;
+    while (++i < mapsize->heigth)
+            free(mapsize->visit[i]);
+    free(mapsize->visit[i]);
     printf("Error\nThis game is unplayable\n");
     return (0);
 }

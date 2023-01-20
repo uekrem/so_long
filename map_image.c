@@ -1,18 +1,24 @@
 #include "so_long.h"
 
-void    ft_close_game(t_mlx *mlx)
+int    ft_close_game(t_mlx *mlx)
 {
+    int i;
+
+    i = -1;
     mlx_destroy_image(mlx->start, mlx->photo->coin);
-    mlx_destroy_image(mlx->start, mlx->photo->enemy);
     mlx_destroy_image(mlx->start, mlx->photo->exit);
     mlx_destroy_image(mlx->start, mlx->photo->ground);
     mlx_destroy_image(mlx->start, mlx->photo->player);
     mlx_destroy_image(mlx->start, mlx->photo->wall);
+    while (mlx->mapsize->map[++i])
+        free(mlx->mapsize->map[i]);
+    free(mlx->mapsize->map[i]);
     free(mlx->mapsize->map);
-    free(mlx->mapsize);
-    free(mlx->photo);
     free(mlx->start);
     free(mlx->win);
+
+    system("leaks so_long");
+    exit(0);
 }
 
 void    ft_img_put(char s, t_mlx *mlx, t_photo *photo, t_temp *temp)
@@ -46,12 +52,12 @@ void    ft_img_idx(t_map *mapsize, t_mlx *mlx, t_photo *photo)
         }
         temp.k += 64;
     }
+    ft_put_score(mlx->mapsize->point, mlx);
 }
 
 void    ft_img_addr(t_photo *photo, t_mlx *mlx)
 {
     photo->exit = mlx_xpm_file_to_image(mlx->start, exit_path, &photo->x, &photo->y);
-    photo->enemy = mlx_xpm_file_to_image(mlx->start, enemy_path, &photo->x, &photo->y);
     photo->player = mlx_xpm_file_to_image(mlx->start, p_normal_path, &photo->x, &photo->y);
     photo->coin = mlx_xpm_file_to_image(mlx->start, coin_path, &photo->x, &photo->y);
     photo->ground = mlx_xpm_file_to_image(mlx->start, ground_path, &photo->x, &photo->y);

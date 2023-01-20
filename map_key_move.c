@@ -12,16 +12,23 @@ void    ft_plyr_direction(int keycode, t_mlx *mlx)
         mlx->photo->player = mlx_xpm_file_to_image(mlx->start, p_right_path, &mlx->photo->x, &mlx->photo->y);
 }
 
-void    ft_put_score(char *point, t_mlx *mlx)   //score düzellltltlttl 
+void    ft_put_score(int point, t_mlx *mlx)   
 {
-    mlx_string_put(mlx->start, mlx->win, 100, 100, 000000, point);
-    free(point);
+    char    *score;
+
+    score = ft_itoa(point);
+    if (point < 0)                  //bakılmalı
+    {
+        free(score);
+        score = ft_itoa(0);
+    }
+    mlx_string_put(mlx->start, mlx->win, 20, 20, 0x00FFFFFF, score);
+    free(score);
 }
 
 void    ft_move(t_mlx *mlx, int x, int y)
 {
     static int count;                           
-    static int  point;
 
     if (count == mlx->mapsize->coin && mlx->mapsize->map[x][y] == 'E')
     {
@@ -29,23 +36,21 @@ void    ft_move(t_mlx *mlx, int x, int y)
         mlx->mapsize->map[x][y] = 'P';
         mlx->mapsize->p_x = x;
         mlx->mapsize->p_y = y;
-        printf("Win! Puan Durumun:%d", ++point);        //çıkış yaparken leak
-        ft_put_score(ft_itoa(point), mlx);
-        exit(1);
+        printf("Win! Puan Durumun:%d", mlx->mapsize->point += 1);        //çıkış yaparken leak
+        ft_close_game(mlx);
     }
     if (mlx->mapsize->map[x][y] != '1' && mlx->mapsize->map[x][y] != 'E')
     {
         if (mlx->mapsize->map[x][y] == 'C')
         {
-            printf("Puan Durumu:%d\n", ++point);
+            printf("Puan Durumu:%d\n", mlx->mapsize->point += 1);
             count++;
         }
         mlx->mapsize->map[mlx->mapsize->p_x][mlx->mapsize->p_y] = '0';
         mlx->mapsize->map[x][y] = 'P';
         mlx->mapsize->p_x = x;
         mlx->mapsize->p_y = y;
-        printf("Puan Durumu:%d\n", ++point);
-        ft_put_score(ft_itoa(point), mlx);
+        printf("Puan Durumu:%d\n", mlx->mapsize->point += 1);
     }
 }
 
@@ -62,10 +67,7 @@ int    ft_key_move(int keycode, t_mlx *mlx)
     else if (keycode == 2)
         ft_move(mlx, mlx->mapsize->p_x, mlx->mapsize->p_y + 1);
     else if (keycode == 53)             //çıkış yaparken leak
-    {
-
-        exit(1);
-    }
+        ft_close_game(mlx);
     ft_img_idx(mlx->mapsize, mlx, mlx->photo);
     return (keycode);
 }

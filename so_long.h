@@ -4,7 +4,6 @@
 # define exit_path "./textures/exit.xpm"
 # define ground_path "./textures/ground.xpm"
 # define p_left_path "./textures/player_left.xpm"
-# define enemy_path "./textures/enemy.xpm"
 # define coin_path "./textures/coin.xpm"
 # define wall_path "./textures/wall.xpm"
 # define p_right_path "./textures/player_right.xpm"
@@ -19,7 +18,6 @@ typedef struct s_photo
 {
     void    *player;
     void    *coin;
-    void    *enemy;
     void    *exit;
     void    *wall;
     void    *ground;
@@ -29,14 +27,15 @@ typedef struct s_photo
 
 typedef struct s_map
 {
-    char **map;
-    char **visit;
-    int width;
-    int heigth;
-    int total;
-    int p_x;
-    int p_y;
-    int coin;
+    char        **map;
+    char        **visit;
+    int         width;
+    int         heigth;
+    int         total;
+    int         p_x;
+    int         p_y;
+    int         coin;
+    int         point;
 }   t_map;
 
 typedef struct s_temp
@@ -69,7 +68,8 @@ int     ft_check_prison(t_map *mapsize);
 void    ft_img_addr(t_photo *photo, t_mlx *mlx);
 void    ft_img_idx(t_map *mapsize, t_mlx *mlx, t_photo *photo);
 int     ft_key_move(int keycode, t_mlx *mlx);
-void    ft_close_game(t_mlx *mlx);
+int    ft_close_game(t_mlx *mlx);
 char	*ft_itoa(int n);
+void    ft_put_score(int point, t_mlx *mlx);
 
 #endif

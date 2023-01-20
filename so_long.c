@@ -92,8 +92,9 @@ int main(int argc, char **argv)
         ft_img_addr(&photo, &mlx);
         ft_img_idx(&mapsize, &mlx, &photo);
         mlx.mapsize = &mapsize;
-        mlx.photo= &photo;
+        mlx.photo = &photo;
         mlx_hook(mlx.win,  2, (1L << 0), ft_key_move, &mlx);
+        mlx_hook(mlx.win,  17, 0L, ft_close_game, &mlx);
         mlx_loop(mlx.start);
     }
 }
