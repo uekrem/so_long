@@ -12,11 +12,10 @@ int    ft_close_game(t_mlx *mlx)
     mlx_destroy_image(mlx->start, mlx->photo->wall);
     while (mlx->mapsize->map[++i])
         free(mlx->mapsize->map[i]);
-    free(mlx->mapsize->map[i]);
+    //free(mlx->mapsize->map[i]);
     free(mlx->mapsize->map);
-    free(mlx->start);
-    free(mlx->win);
-    //system("leaks so_long");
+    mlx_destroy_window(mlx->start, mlx->win);
+    system("leaks so_long");
     exit(0);
 }
 

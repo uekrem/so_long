@@ -31,7 +31,7 @@ void    ft_move(t_mlx *mlx, int x, int y)
         mlx->mapsize->map[x][y] = 'P';
         mlx->mapsize->p_x = x;
         mlx->mapsize->p_y = y;
-        printf("Win! Puan Durumun:%d", mlx->mapsize->point += 1);        //çıkış yaparken leak
+        printf("Win! Puan Durumun:%d", mlx->mapsize->point += 1);        //
         ft_close_game(mlx);
     }
     if (mlx->mapsize->map[x][y] != '1' && mlx->mapsize->map[x][y] != 'E')
@@ -61,7 +61,7 @@ int    ft_key_move(int keycode, t_mlx *mlx)
         ft_move(mlx, mlx->mapsize->p_x + 1, mlx->mapsize->p_y);
     else if (keycode == 2)
         ft_move(mlx, mlx->mapsize->p_x, mlx->mapsize->p_y + 1);
-    else if (keycode == 53)             //çıkış yaparken leak
+    else if (keycode == 53)             //
         ft_close_game(mlx);
     ft_img_idx(mlx->mapsize, mlx, mlx->photo);
     return (keycode);
