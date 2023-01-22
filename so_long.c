@@ -8,7 +8,7 @@ void    ft_file_check()
 
     fd = open("./textures/exit.xpm", O_RDONLY);
     fd2 = open("./textures/ground.xpm", O_RDONLY);
-    fd3 = open("./textures/player_left.xpm", O_RDONLY);
+    fd3 = open("./textures/p_l.xpm", O_RDONLY);
     while (fd < 0 || fd2 < 0 || fd3 < 0)
     {
         printf("File Not Found!");
@@ -30,11 +30,11 @@ void    ft_file_check2()
     int fd4;
     int fd5;
 
-    fd = open("./textures/coin.xpm", O_RDONLY);
-    fd2 = open("./textures/wall.xpm", O_RDONLY);
-    fd3 = open("./textures/player_right.xpm", O_RDONLY);
-    fd4 = open("./textures/player_normal.xpm", O_RDONLY);
-    fd5 = open("./textures/player_behind.xpm", O_RDONLY);
+    fd = open("./textures/1co.xpm", O_RDONLY);
+    fd2 = open("./textures/1_w.xpm", O_RDONLY);
+    fd3 = open("./textures/p_r.xpm", O_RDONLY);
+    fd4 = open("./textures/p_n.xpm", O_RDONLY);
+    fd5 = open("./textures/p_b.xpm", O_RDONLY);
     while (fd < 0 || fd2 < 0 || fd3 < 0 || fd4 < 0)
     {
         printf("File Not Found!");
@@ -76,6 +76,46 @@ void    ft_file_map(char *str)
     ft_file_check2();
 }
 
+int ft_loop_img(t_mlx *mlx)
+{
+    static int  pos_player;
+    static int  loop;
+
+    if (loop < 1500)
+	{
+		loop++;
+		return (0);
+	}
+	loop = 0;
+    if (pos_player == 1)
+    {
+        mlx->photo->coin = mlx_xpm_file_to_image(mlx->start, c_one, &mlx->photo->x, &mlx->photo->y);
+        mlx->photo->wall = mlx_xpm_file_to_image(mlx->start, w_one, &mlx->photo->x, &mlx->photo->y);
+        mlx->photo->enemy = mlx_xpm_file_to_image(mlx->start, x_one, &mlx->photo->x, &mlx->photo->y);
+    }
+    else if (pos_player == 2)
+        {
+        mlx->photo->coin = mlx_xpm_file_to_image(mlx->start, c_two, &mlx->photo->x, &mlx->photo->y);
+        mlx->photo->wall = mlx_xpm_file_to_image(mlx->start, w_two, &mlx->photo->x, &mlx->photo->y);
+        mlx->photo->enemy = mlx_xpm_file_to_image(mlx->start, x_two, &mlx->photo->x, &mlx->photo->y);
+    }
+    else if (pos_player == 3)
+        {
+        mlx->photo->coin = mlx_xpm_file_to_image(mlx->start, c_three, &mlx->photo->x, &mlx->photo->y);
+        mlx->photo->wall = mlx_xpm_file_to_image(mlx->start, w_three, &mlx->photo->x, &mlx->photo->y);
+        mlx->photo->enemy = mlx_xpm_file_to_image(mlx->start, x_three, &mlx->photo->x, &mlx->photo->y);
+    }
+    else if (pos_player == 4)
+    {
+        mlx->photo->coin = mlx_xpm_file_to_image(mlx->start, c_four, &mlx->photo->x, &mlx->photo->y);
+        mlx->photo->wall = mlx_xpm_file_to_image(mlx->start, w_four, &mlx->photo->x, &mlx->photo->y);
+        pos_player = 0;
+    }
+    ft_img_idx(mlx->mapsize, mlx, mlx->photo);
+    pos_player++;
+	return (0);
+}
+
 int main(int argc, char **argv)
 {
     t_map   mapsize;
@@ -95,6 +135,7 @@ int main(int argc, char **argv)
         mlx.mapsize = &mapsize;
         mlx.photo = &photo;
         mlx_hook(mlx.win,  2, (1L << 0), ft_key_move, &mlx);
+        mlx_loop_hook(mlx.start, ft_loop_img, &mlx);
         mlx_hook(mlx.win,  17, 0L, ft_close_game, &mlx);
         mlx_loop(mlx.start);
     }

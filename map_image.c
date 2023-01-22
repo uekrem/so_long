@@ -10,6 +10,7 @@ int    ft_close_game(t_mlx *mlx)
     mlx_destroy_image(mlx->start, mlx->photo->ground);
     mlx_destroy_image(mlx->start, mlx->photo->player);
     mlx_destroy_image(mlx->start, mlx->photo->wall);
+    mlx_destroy_image(mlx->start, mlx->photo->enemy);
     while (mlx->mapsize->map[++i])
         free(mlx->mapsize->map[i]);
     //free(mlx->mapsize->map[i]);
@@ -31,6 +32,8 @@ void    ft_img_put(char s, t_mlx *mlx, t_photo *photo, t_temp *temp)
         mlx_put_image_to_window(mlx->start, mlx->win, photo->wall, temp->l, temp->k);
     else if (s == 'P')
         mlx_put_image_to_window(mlx->start, mlx->win, photo->player, temp->l, temp->k);
+    else if (s == 'X')
+        mlx_put_image_to_window(mlx->start, mlx->win, photo->enemy, temp->l, temp->k);
 }
 
 void    ft_img_idx(t_map *mapsize, t_mlx *mlx, t_photo *photo)
@@ -55,9 +58,10 @@ void    ft_img_idx(t_map *mapsize, t_mlx *mlx, t_photo *photo)
 
 void    ft_img_addr(t_photo *photo, t_mlx *mlx)
 {
-    photo->exit = mlx_xpm_file_to_image(mlx->start, exit_path, &photo->x, &photo->y);
-    photo->player = mlx_xpm_file_to_image(mlx->start, p_normal_path, &photo->x, &photo->y);
-    photo->coin = mlx_xpm_file_to_image(mlx->start, coin_path, &photo->x, &photo->y);
-    photo->ground = mlx_xpm_file_to_image(mlx->start, ground_path, &photo->x, &photo->y);
-    photo->wall = mlx_xpm_file_to_image(mlx->start, wall_path, &photo->x, &photo->y);
+    photo->exit = mlx_xpm_file_to_image(mlx->start, e_one, &photo->x, &photo->y);
+    photo->player = mlx_xpm_file_to_image(mlx->start, p_n, &photo->x, &photo->y);
+    photo->coin = mlx_xpm_file_to_image(mlx->start, c_one, &photo->x, &photo->y);
+    photo->ground = mlx_xpm_file_to_image(mlx->start, g_one, &photo->x, &photo->y);
+    photo->wall = mlx_xpm_file_to_image(mlx->start, w_one, &photo->x, &photo->y);
+    photo->enemy = mlx_xpm_file_to_image(mlx->start, x_one, &photo->x, &photo->y);
 }

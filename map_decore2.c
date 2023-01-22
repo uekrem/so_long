@@ -11,7 +11,8 @@ int ft_return_exit(t_map *mapsize, int exit_x, int exit_y)
 
 int ft_check_prison2(t_map *mapsize, int x, int y)
 {
-    if (mapsize->map[x][y] != '1' && mapsize->visit[x][y] != '1')
+    if (mapsize->map[x][y] != '1' && mapsize->visit[x][y] != '1' 
+        && mapsize->map[x][y] != 'X')
     {
         mapsize->visit[x][y] = '1';
         if (mapsize->map[x][y] == 'F')

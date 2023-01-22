@@ -84,7 +84,7 @@ int ft_oth_check(char *first_map, t_map *mapsize)
         }
     }
     if (ft_strchr(first_map, 'P') == 1 && ft_strchr(first_map, 'E') == 1                            
-        && ft_strchr(first_map, 'C') >= 1 && ft_diff(first_map, "01CEP\n") == 1)                    //dizide \n'de var 
+        && ft_strchr(first_map, 'C') >= 1 && ft_diff(first_map, "01CEPX\n") == 1)                    //dizide \n'de var 
         return (1);                                                                                 //farklı karakter görmesi için ft_diff -> 'A' error
     return (0);
 }

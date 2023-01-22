@@ -1,14 +1,27 @@
 
 #ifndef SO_LONG_H
 # define SO_LONG_H 
-# define exit_path "./textures/exit.xpm"
-# define ground_path "./textures/ground.xpm"
-# define p_left_path "./textures/player_left.xpm"
-# define coin_path "./textures/coin.xpm"
-# define wall_path "./textures/wall.xpm"
-# define p_right_path "./textures/player_right.xpm"
-# define p_normal_path "./textures/player_normal.xpm"
-# define p_behind_path "./textures/player_behind.xpm"
+# define e_one "./textures/exit.xpm"
+# define g_one "./textures/ground.xpm"
+
+# define p_l "./textures/p_l.xpm"
+# define p_r "./textures/p_r.xpm"
+# define p_n "./textures/p_n.xpm"
+# define p_b "./textures/p_b.xpm"
+
+# define c_one "./textures/1co.xpm"
+# define c_two "./textures/2co.xpm"
+# define c_three "./textures/3co.xpm"
+# define c_four "./textures/4co.xpm"
+
+# define w_one "./textures/1_w.xpm"
+# define w_two "./textures/2_w.xpm"
+# define w_three "./textures/3_w.xpm"
+# define w_four "./textures/4_w.xpm"
+
+# define x_one "./textures/1_x.xpm"
+# define x_two "./textures/2_x.xpm"
+# define x_three "./textures/3_x.xpm"
 
 # include "./mlx_linux/mlx.h"
 # include "./get_next_line/get_next_line.h"
@@ -21,6 +34,7 @@ typedef struct s_photo
     void    *exit;
     void    *wall;
     void    *ground;
+    void    *enemy;
     int     x;
     int     y;
 }   t_photo;
@@ -71,5 +85,6 @@ int     ft_key_move(int keycode, t_mlx *mlx);
 int    ft_close_game(t_mlx *mlx);
 char	*ft_itoa(int n);
 void    ft_put_score(int point, t_mlx *mlx);
+void    ft_img_put(char s, t_mlx *mlx, t_photo *photo, t_temp *temp);
 
 #endif
