@@ -23,6 +23,8 @@ SRCS        :=   map_decore2.c \
                           so_long.c \
                           map_decore.c \
 						  map_key_move.c \
+						  map_animation.c \
+						  map_file.c \
                           
 OBJS        := $(SRCS:.c=.o)
 
@@ -108,6 +110,8 @@ SRCS        :=  map_decore2.c \
                           so_long.c \
                           map_decore.c \
 						  map_key_move.c \
+						  map_animation.c \
+						  map_file.c \
                           
 OBJS        := $(SRCS:.c=.o)
 

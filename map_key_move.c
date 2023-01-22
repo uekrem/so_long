@@ -21,14 +21,19 @@ void    ft_put_score(int point, t_mlx *mlx)
     free(score);
 }
 
+void    ft_value_swap(t_mlx *mlx, int x, int y)
+{
+    mlx->mapsize->map[mlx->mapsize->p_x][mlx->mapsize->p_y] = '0';
+    mlx->mapsize->map[x][y] = 'P';
+    mlx->mapsize->p_x = x;
+    mlx->mapsize->p_y = y;
+}
+
 void    ft_move(t_mlx *mlx, int x, int y)
 {
     if (!mlx->mapsize->coin && mlx->mapsize->map[x][y] == 'E')
     {
-        mlx->mapsize->map[mlx->mapsize->p_x][mlx->mapsize->p_y] = '0';
-        mlx->mapsize->map[x][y] = 'P';
-        mlx->mapsize->p_x = x;
-        mlx->mapsize->p_y = y;
+        ft_value_swap(mlx, x, y);
         printf("Win! Puan Durumun:%d", mlx->mapsize->point += 1);        
         ft_close_game(mlx);
     }
@@ -45,10 +50,7 @@ void    ft_move(t_mlx *mlx, int x, int y)
             printf("Puan Durumu:%d\n", mlx->mapsize->point += 1);
             mlx->mapsize->coin -= 1;
         }
-        mlx->mapsize->map[mlx->mapsize->p_x][mlx->mapsize->p_y] = '0';
-        mlx->mapsize->map[x][y] = 'P';
-        mlx->mapsize->p_x = x;
-        mlx->mapsize->p_y = y;
+        ft_value_swap(mlx, x, y);
         printf("Puan Durumu:%d\n", mlx->mapsize->point += 1);
     }
 }

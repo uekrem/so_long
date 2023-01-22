@@ -50,16 +50,13 @@ char    **ft_create_maps(char *first_map, t_map *mapsize)
     {
         while (++i < mapsize->heigth)
             free(mapsize->visit[i]);
-        free(mapsize->visit[i]);
         return (mapsize->map);
     }
     while (++i < mapsize->heigth)
         free(mapsize->map[i]);
-    free(mapsize->map[i]);
     i = -1;
     while (++i < mapsize->heigth)
             free(mapsize->visit[i]);
-    free(mapsize->visit[i]);
     printf("Error\nThis game is unplayable\n");
     return (0);
 }
@@ -69,11 +66,11 @@ int ft_oth_check(char *first_map, t_map *mapsize)
     int i;
 
     i = 0;
-    while (first_map[i])                                                        //duvar kontrolü //sadece 1 kontrolü
+    while (first_map[i])                                                       
     {
         if (first_map[i] != '1' && first_map[i] != '\n')
             return (0);
-        if (i <= mapsize->width || i >= ((mapsize->heigth - 1) * mapsize->width))                          //1. satır ve sonuncu satır ayrıştırması
+        if (i <= mapsize->width || i >= ((mapsize->heigth - 1) * mapsize->width))                   
             i++;
         else
         {
@@ -84,8 +81,8 @@ int ft_oth_check(char *first_map, t_map *mapsize)
         }
     }
     if (ft_strchr(first_map, 'P') == 1 && ft_strchr(first_map, 'E') == 1                            
-        && ft_strchr(first_map, 'C') >= 1 && ft_diff(first_map, "01CEPX\n") == 1)                    //dizide \n'de var 
-        return (1);                                                                                 //farklı karakter görmesi için ft_diff -> 'A' error
+        && ft_strchr(first_map, 'C') >= 1 && ft_diff(first_map, "01CEPX\n") == 1)                    
+        return (1);                                                                                 
     return (0);
 }
 
@@ -100,7 +97,7 @@ char    **ft_read_maps(t_map *mapsize, char *map_file)
     while  (first_map[++mapsize->width])
         if (first_map[mapsize->width] == '\n')
             break;
-    mapsize->heigth = ft_strchr(first_map, '\n') + 1;                                //sonuncu satır sayılmadığı için
+    mapsize->heigth = ft_strchr(first_map, '\n') + 1;                               
     mapsize->total = mapsize->heigth * mapsize->width;
     if(ft_oth_check(first_map, mapsize)
         && mapsize->total == ft_strlen(first_map) - ft_strchr(first_map, '\n'))
