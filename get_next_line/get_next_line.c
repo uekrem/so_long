@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hekrem <hekrem@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/23 14:52:23 by hekrem            #+#    #+#             */
+/*   Updated: 2023/01/23 15:17:56 by hekrem           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 static char	*read_line(int fd, char *arr)
@@ -26,7 +38,7 @@ static char	*read_line(int fd, char *arr)
 
 char	*get_next_line(int fd)
 {
-	static char		*arr;
+	static char	*arr;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);

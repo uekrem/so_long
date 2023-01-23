@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hekrem <hekrem@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/23 14:51:15 by hekrem            #+#    #+#             */
+/*   Updated: 2023/01/23 15:15:24 by hekrem           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 int	ft_strlen(const char *s)
@@ -10,12 +22,12 @@ int	ft_strlen(const char *s)
 	return (i);
 }
 
-int ft_strchr(char *s, char c)
+int	ft_strchr(char *s, char c)
 {
 	int	i;
-    int count;
+	int	count;
 
-    count = 0;
+	count = 0;
 	i = 0;
 	while (s[i] != '\0')
 	{
@@ -38,7 +50,7 @@ int	ft_diff(char *s1, char *s2)
 		while (s2[++j])
 		{
 			if (s1[i] == s2[j])
-				break;
+				break ;
 		}
 		if (s2[j] == '\0')
 			return (0);
@@ -46,25 +58,25 @@ int	ft_diff(char *s1, char *s2)
 	return (1);
 }
 
-char **ft_multi_arr(t_map *map)
+char	**ft_multi_arr(t_map *map)
 {
-	char **str;
-	int     i;
+	char	**str;
+	int		i;
 
-    i = -1;
-    str = (char **)malloc((map->heigth + 1) * sizeof(char *));
-    if (str == NULL)
-        return (0);
-    str[map->heigth] = 0;
-    while (++i < map->heigth)
-    {
-        str[i] = malloc((map->width + 1)* sizeof(char));
-        str[i][map->width] = '\0';
-    }
+	i = -1;
+	str = (char **)malloc((map->height + 1) * sizeof(char *));
+	if (str == NULL)
+		return (0);
+	str[map->height] = 0;
+	while (++i < map->height)
+	{
+		str[i] = malloc((map->width + 1) * sizeof(char));
+		str[i][map->width] = '\0';
+	}
 	return (str);
 }
 
-void	ft_memset(char	*b, char c, int len)
+void	ft_memset(char *b, char c, int len)
 {
 	int	i;
 
